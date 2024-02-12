@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+
+<title>Sofiaa</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<style>
+.center-screen {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+}
+</style>
+</head>
+
+<body>
+<div id="app" class="center-screen" style="display: flex; flex-direction: column;">
+<h3 @click="changeText('heading')">{{ currentHeaderText }}</h3>
+
+<button type="button" class="btn btn-success mr-2" :style="{ fontSize: yesButtonSize + 'rem' }"
+:key="yesButtonSize" @click="yesButton()">si</button>
+<button type=" button" class="btn btn-danger" @click="changeText('noButton')">no</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script>
+new Vue({
+el: '#app',
+data: {
+headerText: ['Quieres ser mi cita de san valentin?',
+'segura?',
+'como que no oe',
+'esta cosa no esta programada para q te niegues',
+'no hay regalo sino aceptas',],
+currentHeaderTextIndex: 0,
+yesButtonSize: 1, // Define yesButtonSize here
+},
+methods: {
+changeText(button) {
+if (button === 'noButton') {
+this.currentHeaderTextIndex = (this.currentHeaderTextIndex + 1) % this.headerText.length;
+this.yesButtonSize += 5;
+}
+},
+yesButton() {
+alert('SABIA QUE ACEPTARIAS TQM <3');
+}
+},
+computed: {
+currentHeaderText() {
+return this.headerText[this.currentHeaderTextIndex];
+}
+}
+});
+</script>
+</body>
+
+</html>
